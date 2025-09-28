@@ -1,0 +1,101 @@
+body {
+  max-width: 1560px;
+  margin: 0 auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE 10+ */
+}
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+#mobile-menu {
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.nav-link {
+  position: relative;
+  font-weight: 600;
+  color: #000;
+  transition: color 0.8s;
+}
+.nav-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: #2563eb; /* Tailwind blue-600 */
+  transition: width 0.8s;
+}
+.nav-link:hover {
+  color: #2563eb;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Hero cards */
+.bg-div {
+  background-image: url("../img/home_page_img.png");
+  background-size: cover; /* makes it fit */
+  background-position: center; /* centers the image */
+  width: 100%;
+}
+
+.bg-dot-div {
+  background-image: url("../img/dots_img.png");
+  background-size: cover; /* makes it fit */
+  background-position: center; /* centers the image */
+  width: 100%;
+}
+
+/*hero card button */
+@media (min-width: 308px) and (max-width: 330px) {
+  .your-div {
+    padding-top: 30px; 
+  }
+}
+@media (min-width: 331px) and (max-width: 378px) {
+  .your-div {
+    padding-top: 36px; /* For > 400px */
+  }
+}
+@media (min-width: 378px) and (max-width: 500px) {
+  .your-div {
+    padding-top: 44px; 
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
+  .your-div {
+    padding-top: 90px; 
+  }
+}
+
+@media (min-width: 1000px) and (max-width: 1440px) {
+  .your-div {
+    padding-top: 101px; 
+  }
+}
+@media (min-width: 1440px) {
+  .your-div {
+    padding-top: 138px; 
+  }
+}
+
+/* ball */
+.ball{
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: red;
+  position: relative;
+  /* animation: mymove 5s infinite; */
+  z-index: 30;
+}
+
+@keyframes mymove {
+  0%   { left: 0px; opacity: 1; }     /* Start full visible */
+  /* 80%  { left: 440px; opacity: 1; }   Reach end but still visible */
+  100% { left: 100%; opacity: 0.3; }   /* Fade out at end */
+}
+

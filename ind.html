@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Left to Right Ball Flow</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Hero card button responsive padding */
+        @media (min-width: 308px) and (max-width: 330px) {
+            .your-div {
+                padding-top: 30px; 
+            }
+        }
+        @media (min-width: 331px) and (max-width: 378px) {
+            .your-div {
+                padding-top: 36px;
+            }
+        }
+        @media (min-width: 378px) and (max-width: 500px) {
+            .your-div {
+                padding-top: 44px; 
+            }
+        }
+        @media (min-width: 768px) and (max-width: 1000px) {
+            .your-div {
+                padding-top: 90px; 
+            }
+        }
+        @media (min-width: 1000px) and (max-width: 1440px) {
+            .your-div {
+                padding-top: 101px; 
+            }
+        }
+        @media (min-width: 1440px) {
+            .your-div {
+                padding-top: 138px; 
+            }
+        }
+        
+        .wing-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        /* Wing path lines - simplified for animation */
+        .wing-line {
+            position: absolute;
+            height: 1px;
+            background: rgba(255, 255, 255, 0.3);
+            width: 45%;
+        }
+
+        /* Left wing lines */
+        .left-line-1 {
+            top: 25%;
+            left: 5%;
+            transform: rotate(-8deg);
+            transform-origin: left center;
+        }
+
+        .left-line-2 {
+            top: 35%;
+            left: 5%;
+            transform: rotate(-4deg);
+            transform-origin: left center;
+        }
+
+        .left-line-3 {
+            top: 45%;
+            left: 5%;
+            transform: rotate(0deg);
+        }
+
+        .left-line-4 {
+            top: 55%;
+            left: 5%;
+            transform: rotate(4deg);
+            transform-origin: left center;
+        }
+
+        .left-line-5 {
+            top: 65%;
+            left: 5%;
+            transform: rotate(8deg);
+            transform-origin: left center;
+        }
+
+        /* Right wing lines */
+        .right-line-1 {
+            top: 25%;
+            right: 5%;
+            transform: rotate(8deg);
+            transform-origin: right center;
+        }
+
+        .right-line-2 {
+            top: 35%;
+            right: 5%;
+            transform: rotate(4deg);
+            transform-origin: right center;
+        }
+
+        .right-line-3 {
+            top: 45%;
+            right: 5%;
+            transform: rotate(0deg);
+        }
+
+        .right-line-4 {
+            top: 55%;
+            right: 5%;
+            transform: rotate(-4deg);
+            transform-origin: right center;
+        }
+
+        .right-line-5 {
+            top: 65%;
+            right: 5%;
+            transform: rotate(-8deg);
+            transform-origin: right center;
+        }
+
+        /* Flowing balls */
+        .flowing-ball {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 15;
+        }
+
+        /* Ball colors */
+        .ball-red {
+            background: radial-gradient(circle at 30% 30%, #ffffff, #ff6b6b, #ee5a5a);
+            box-shadow: 0 0 12px rgba(255, 107, 107, 0.8);
+        }
+
+        .ball-orange {
+            background: radial-gradient(circle at 30% 30%, #ffffff, #ffa726, #ff9800);
+            box-shadow: 0 0 12px rgba(255, 167, 38, 0.8);
+        }
+
+        .ball-green {
+            background: radial-gradient(circle at 30% 30%, #ffffff, #66bb6a, #4caf50);
+            box-shadow: 0 0 12px rgba(102, 187, 106, 0.8);
+        }
+
+        .ball-blue {
+            background: radial-gradient(circle at 30% 30%, #ffffff, #42a5f5, #2196f3);
+            box-shadow: 0 0 12px rgba(66, 165, 245, 0.8);
+        }
+
+        .ball-purple {
+            background: radial-gradient(circle at 30% 30%, #ffffff, #ab47bc, #9c27b0);
+            box-shadow: 0 0 12px rgba(171, 71, 188, 0.8);
+        }
+
+        .ball-cyan {
+            background: radial-gradient(circle at 30% 30%, #ffffff, #26c6da, #00bcd4);
+            box-shadow: 0 0 12px rgba(38, 198, 218, 0.8);
+        }
+
+        /* Left to right flow animations - following wing paths */
+        @keyframes flowLine1 {
+            0% {
+                left: 5%;
+                top: 25%;
+                opacity: 0;
+                transform: scale(0.5) rotate(-8deg);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1) rotate(-8deg);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 95%;
+                top: 25%;
+                opacity: 0;
+                transform: scale(0.3) rotate(-8deg);
+            }
+        }
+
+        @keyframes flowLine2 {
+            0% {
+                left: 5%;
+                top: 35%;
+                opacity: 0;
+                transform: scale(0.5) rotate(-4deg);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1) rotate(-4deg);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 95%;
+                top: 35%;
+                opacity: 0;
+                transform: scale(0.3) rotate(-4deg);
+            }
+        }
+
+        @keyframes flowLine3 {
+            0% {
+                left: 5%;
+                top: 45%;
+                opacity: 0;
+                transform: scale(0.5) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1) rotate(0deg);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 95%;
+                top: 45%;
+                opacity: 0;
+                transform: scale(0.3) rotate(0deg);
+            }
+        }
+
+        @keyframes flowLine4 {
+            0% {
+                left: 5%;
+                top: 55%;
+                opacity: 0;
+                transform: scale(0.5) rotate(4deg);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1) rotate(4deg);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 95%;
+                top: 55%;
+                opacity: 0;
+                transform: scale(0.3) rotate(4deg);
+            }
+        }
+
+        @keyframes flowLine5 {
+            0% {
+                left: 5%;
+                top: 65%;
+                opacity: 0;
+                transform: scale(0.5) rotate(8deg);
+            }
+            10% {
+                opacity: 1;
+                transform: scale(1) rotate(8deg);
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                left: 95%;
+                top: 65%;
+                opacity: 0;
+                transform: scale(0.3) rotate(8deg);
+            }
+        }
+
+        /* Apply animations to balls following each wing line */
+        .flow-line-1 { animation: flowLine1 6s infinite linear; }
+        .flow-line-2 { animation: flowLine2 5.5s infinite linear; }
+        .flow-line-3 { animation: flowLine3 5s infinite linear; }
+        .flow-line-4 { animation: flowLine4 5.5s infinite linear; }
+        .flow-line-5 { animation: flowLine5 6s infinite linear; }
+
+        /* Stagger delays for each line */
+        .delay-0 { animation-delay: 0s; }
+        .delay-1 { animation-delay: 0.5s; }
+        .delay-2 { animation-delay: 1s; }
+        .delay-3 { animation-delay: 1.5s; }
+        .delay-4 { animation-delay: 2s; }
+        .delay-5 { animation-delay: 2.5s; }
+
+        /* Button styles */
+        .lets-talk-btn {
+            background: white;
+            border-radius: 25px;
+            padding: 12px 32px;
+            font-weight: 600;
+            font-size: 18px;
+            color: #6B46C1;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 20;
+        }
+
+        .lets-talk-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Wing images container */
+        .wing-images {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+        
+        .wing-images img {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .left-wing {
+            left: 0;
+        }
+        
+        .right-wing {
+            right: 0;
+        }
+    </style>
+</head>
+<body class="bg-gray-900">
+    <div class="flex justify-center items-center min-h-screen">
+        <div class="bg-gradient rounded-3xl w-full max-w-6xl mx-4 p-8">
+            <!-- Header Text -->
+            <div class="text-center mb-8">
+                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
+                    Unleash Next-Level Growth
+                </h1>
+                <h2 class="text-2xl md:text-4xl lg:text-5xl font-semibold text-white mb-6">
+                    Effortless, Insightful, Yours.
+                </h2>
+                <p class="text-lg md:text-xl text-white/90">
+                    Reach your goals with tools that accelerate progress
+                </p>
+            </div>
+
+            <!-- Wing Animation Container -->
+            <div class="wing-container relative">
+                <!-- Wing images -->
+                <div class="wing-images">
+                    <img src="img/left_wing.png" alt="Left Wing" class="left-wing w-1/2">
+                    <img src="img/right_wing.png" alt="Right Wing" class="right-wing w-1/2">
+                </div>
+
+               
+
+                <!-- Flowing balls following each wing line from left to right -->
+                <!-- Line 1 balls -->
+                <div class="flowing-ball ball-red flow-line-1 delay-0"></div>
+                <div class="flowing-ball ball-orange flow-line-1 delay-1"></div>
+                <div class="flowing-ball ball-green flow-line-1 delay-2"></div>
+                <div class="flowing-ball ball-blue flow-line-1 delay-3"></div>
+                <div class="flowing-ball ball-purple flow-line-1 delay-4"></div>
+                <div class="flowing-ball ball-cyan flow-line-1 delay-5"></div>
+
+                <!-- Line 2 balls -->
+                <div class="flowing-ball ball-orange flow-line-2 delay-0"></div>
+                <div class="flowing-ball ball-green flow-line-2 delay-1"></div>
+                <div class="flowing-ball ball-blue flow-line-2 delay-2"></div>
+                <div class="flowing-ball ball-purple flow-line-2 delay-3"></div>
+                <div class="flowing-ball ball-cyan flow-line-2 delay-4"></div>
+                <div class="flowing-ball ball-red flow-line-2 delay-5"></div>
+
+                <!-- Line 3 balls -->
+                <div class="flowing-ball ball-green flow-line-3 delay-0"></div>
+                <div class="flowing-ball ball-blue flow-line-3 delay-1"></div>
+                <div class="flowing-ball ball-purple flow-line-3 delay-2"></div>
+                <div class="flowing-ball ball-cyan flow-line-3 delay-3"></div>
+                <div class="flowing-ball ball-red flow-line-3 delay-4"></div>
+                <div class="flowing-ball ball-orange flow-line-3 delay-5"></div>
+
+                <!-- Line 4 balls -->
+                <div class="flowing-ball ball-blue flow-line-4 delay-0"></div>
+                <div class="flowing-ball ball-purple flow-line-4 delay-1"></div>
+                <div class="flowing-ball ball-cyan flow-line-4 delay-2"></div>
+                <div class="flowing-ball ball-red flow-line-4 delay-3"></div>
+                <div class="flowing-ball ball-orange flow-line-4 delay-4"></div>
+                <div class="flowing-ball ball-green flow-line-4 delay-5"></div>
+
+                <!-- Line 5 balls -->
+                <div class="flowing-ball ball-purple flow-line-5 delay-0"></div>
+                <div class="flowing-ball ball-cyan flow-line-5 delay-1"></div>
+                <div class="flowing-ball ball-red flow-line-5 delay-2"></div>
+                <div class="flowing-ball ball-orange flow-line-5 delay-3"></div>
+                <div class="flowing-ball ball-green flow-line-5 delay-4"></div>
+                <div class="flowing-ball ball-blue flow-line-5 delay-5"></div>
+
+                <!-- Center Button -->
+                <div class="absolute inset-0 flex justify-center items-center your-div">
+                    <button class="lets-talk-btn">
+                        Let's Talk
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
