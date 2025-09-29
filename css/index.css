@@ -3,6 +3,7 @@ body {
   margin: 0 auto;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
+  font-family: 'Clash Grotesk', sans-serif;
 }
 body::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
@@ -10,6 +11,18 @@ body::-webkit-scrollbar {
 
 #mobile-menu {
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.blur-puff{
+  filter: blur(1.2px);
+}
+.text-xxs{
+   font-size: 9px;
+}
+.text-xsl{
+   font-size: 2px;
+}
+.about-bg {
+  background-color: #EBF0FF;
 }
 
 .nav-link {
@@ -98,4 +111,3 @@ body::-webkit-scrollbar {
   /* 80%  { left: 440px; opacity: 1; }   Reach end but still visible */
   100% { left: 100%; opacity: 0.3; }   /* Fade out at end */
 }
-
