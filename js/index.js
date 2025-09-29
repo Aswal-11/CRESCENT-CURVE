@@ -38,6 +38,8 @@ const caseStudies = [
     tasks: [
       { name: "UI Redesign", color: "bg-green-500" },
       { name: "Landing Page Optimization", color: "bg-yellow-400" },
+      { name: "Affiliate Referral Landing page", color: "bg-pink-400" },
+
     ],
   },
   {
@@ -58,7 +60,7 @@ const grid = document.getElementById("caseStudiesGrid");
 caseStudies.forEach((study) => {
   const card = document.createElement("div");
   card.className =
-    "bg-white rounded-2xl p-6 shadow-sm hover:shadow-lg transition-shadow";
+    "bg-white rounded-2xl p-6 shadow-sm hover:shadow-2xl shadow-gray-600 transition-shadow";
 
   card.innerHTML = `
         <h3 class="font-semibold text-lg mb-2">${study.title}</h3>
