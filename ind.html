@@ -1,416 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Left to Right Ball Flow</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Hero card button responsive padding */
-        @media (min-width: 308px) and (max-width: 330px) {
-            .your-div {
-                padding-top: 30px; 
-            }
-        }
-        @media (min-width: 331px) and (max-width: 378px) {
-            .your-div {
-                padding-top: 36px;
-            }
-        }
-        @media (min-width: 378px) and (max-width: 500px) {
-            .your-div {
-                padding-top: 44px; 
-            }
-        }
-        @media (min-width: 768px) and (max-width: 1000px) {
-            .your-div {
-                padding-top: 90px; 
-            }
-        }
-        @media (min-width: 1000px) and (max-width: 1440px) {
-            .your-div {
-                padding-top: 101px; 
-            }
-        }
-        @media (min-width: 1440px) {
-            .your-div {
-                padding-top: 138px; 
-            }
-        }
-        
-        .wing-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            overflow: hidden;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Section Responsive</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        /* Wing path lines - simplified for animation */
-        .wing-line {
-            position: absolute;
-            height: 1px;
-            background: rgba(255, 255, 255, 0.3);
-            width: 45%;
-        }
-
-        /* Left wing lines */
-        .left-line-1 {
-            top: 25%;
-            left: 5%;
-            transform: rotate(-8deg);
-            transform-origin: left center;
-        }
-
-        .left-line-2 {
-            top: 35%;
-            left: 5%;
-            transform: rotate(-4deg);
-            transform-origin: left center;
-        }
-
-        .left-line-3 {
-            top: 45%;
-            left: 5%;
-            transform: rotate(0deg);
-        }
-
-        .left-line-4 {
-            top: 55%;
-            left: 5%;
-            transform: rotate(4deg);
-            transform-origin: left center;
-        }
-
-        .left-line-5 {
-            top: 65%;
-            left: 5%;
-            transform: rotate(8deg);
-            transform-origin: left center;
-        }
-
-        /* Right wing lines */
-        .right-line-1 {
-            top: 25%;
-            right: 5%;
-            transform: rotate(8deg);
-            transform-origin: right center;
-        }
-
-        .right-line-2 {
-            top: 35%;
-            right: 5%;
-            transform: rotate(4deg);
-            transform-origin: right center;
-        }
-
-        .right-line-3 {
-            top: 45%;
-            right: 5%;
-            transform: rotate(0deg);
-        }
-
-        .right-line-4 {
-            top: 55%;
-            right: 5%;
-            transform: rotate(-4deg);
-            transform-origin: right center;
-        }
-
-        .right-line-5 {
-            top: 65%;
-            right: 5%;
-            transform: rotate(-8deg);
-            transform-origin: right center;
-        }
-
-        /* Flowing balls */
-        .flowing-ball {
-            position: absolute;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            opacity: 0;
-            z-index: 15;
-        }
-
-        /* Ball colors */
-        .ball-red {
-            background: radial-gradient(circle at 30% 30%, #ffffff, #ff6b6b, #ee5a5a);
-            box-shadow: 0 0 12px rgba(255, 107, 107, 0.8);
-        }
-
-        .ball-orange {
-            background: radial-gradient(circle at 30% 30%, #ffffff, #ffa726, #ff9800);
-            box-shadow: 0 0 12px rgba(255, 167, 38, 0.8);
-        }
-
-        .ball-green {
-            background: radial-gradient(circle at 30% 30%, #ffffff, #66bb6a, #4caf50);
-            box-shadow: 0 0 12px rgba(102, 187, 106, 0.8);
-        }
-
-        .ball-blue {
-            background: radial-gradient(circle at 30% 30%, #ffffff, #42a5f5, #2196f3);
-            box-shadow: 0 0 12px rgba(66, 165, 245, 0.8);
-        }
-
-        .ball-purple {
-            background: radial-gradient(circle at 30% 30%, #ffffff, #ab47bc, #9c27b0);
-            box-shadow: 0 0 12px rgba(171, 71, 188, 0.8);
-        }
-
-        .ball-cyan {
-            background: radial-gradient(circle at 30% 30%, #ffffff, #26c6da, #00bcd4);
-            box-shadow: 0 0 12px rgba(38, 198, 218, 0.8);
-        }
-
-        /* Left to right flow animations - following wing paths */
-        @keyframes flowLine1 {
-            0% {
-                left: 5%;
-                top: 25%;
-                opacity: 0;
-                transform: scale(0.5) rotate(-8deg);
-            }
-            10% {
-                opacity: 1;
-                transform: scale(1) rotate(-8deg);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                left: 95%;
-                top: 25%;
-                opacity: 0;
-                transform: scale(0.3) rotate(-8deg);
-            }
-        }
-
-        @keyframes flowLine2 {
-            0% {
-                left: 5%;
-                top: 35%;
-                opacity: 0;
-                transform: scale(0.5) rotate(-4deg);
-            }
-            10% {
-                opacity: 1;
-                transform: scale(1) rotate(-4deg);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                left: 95%;
-                top: 35%;
-                opacity: 0;
-                transform: scale(0.3) rotate(-4deg);
-            }
-        }
-
-        @keyframes flowLine3 {
-            0% {
-                left: 5%;
-                top: 45%;
-                opacity: 0;
-                transform: scale(0.5) rotate(0deg);
-            }
-            10% {
-                opacity: 1;
-                transform: scale(1) rotate(0deg);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                left: 95%;
-                top: 45%;
-                opacity: 0;
-                transform: scale(0.3) rotate(0deg);
-            }
-        }
-
-        @keyframes flowLine4 {
-            0% {
-                left: 5%;
-                top: 55%;
-                opacity: 0;
-                transform: scale(0.5) rotate(4deg);
-            }
-            10% {
-                opacity: 1;
-                transform: scale(1) rotate(4deg);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                left: 95%;
-                top: 55%;
-                opacity: 0;
-                transform: scale(0.3) rotate(4deg);
-            }
-        }
-
-        @keyframes flowLine5 {
-            0% {
-                left: 5%;
-                top: 65%;
-                opacity: 0;
-                transform: scale(0.5) rotate(8deg);
-            }
-            10% {
-                opacity: 1;
-                transform: scale(1) rotate(8deg);
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                left: 95%;
-                top: 65%;
-                opacity: 0;
-                transform: scale(0.3) rotate(8deg);
-            }
-        }
-
-        /* Apply animations to balls following each wing line */
-        .flow-line-1 { animation: flowLine1 6s infinite linear; }
-        .flow-line-2 { animation: flowLine2 5.5s infinite linear; }
-        .flow-line-3 { animation: flowLine3 5s infinite linear; }
-        .flow-line-4 { animation: flowLine4 5.5s infinite linear; }
-        .flow-line-5 { animation: flowLine5 6s infinite linear; }
-
-        /* Stagger delays for each line */
-        .delay-0 { animation-delay: 0s; }
-        .delay-1 { animation-delay: 0.5s; }
-        .delay-2 { animation-delay: 1s; }
-        .delay-3 { animation-delay: 1.5s; }
-        .delay-4 { animation-delay: 2s; }
-        .delay-5 { animation-delay: 2.5s; }
-
-        /* Button styles */
-        .lets-talk-btn {
-            background: white;
-            border-radius: 25px;
-            padding: 12px 32px;
-            font-weight: 600;
-            font-size: 18px;
-            color: #6B46C1;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-            position: relative;
-            z-index: 20;
-        }
-
-        .lets-talk-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-        }
-        
-        /* Wing images container */
-        .wing-images {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 10;
-            pointer-events: none;
-        }
-        
-        .wing-images img {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            object-fit: contain;
-        }
-        
-        .left-wing {
-            left: 0;
-        }
-        
-        .right-wing {
-            right: 0;
-        }
-    </style>
+  <!-- AOS CSS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
 </head>
-<body class="bg-gray-900">
-    <div class="flex justify-center items-center min-h-screen">
-        <div class="bg-gradient rounded-3xl w-full max-w-6xl mx-4 p-8">
-            <!-- Header Text -->
-            <div class="text-center mb-8">
-                <h1 class="text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
-                    Unleash Next-Level Growth
-                </h1>
-                <h2 class="text-2xl md:text-4xl lg:text-5xl font-semibold text-white mb-6">
-                    Effortless, Insightful, Yours.
-                </h2>
-                <p class="text-lg md:text-xl text-white/90">
-                    Reach your goals with tools that accelerate progress
-                </p>
-            </div>
+<body class="bg-gray-100">
 
-            <!-- Wing Animation Container -->
-            <div class="wing-container relative">
-                <!-- Wing images -->
-                <div class="wing-images">
-                    <img src="img/left_wing.png" alt="Left Wing" class="left-wing w-1/2">
-                    <img src="img/right_wing.png" alt="Right Wing" class="right-wing w-1/2">
-                </div>
+  <div class="flex justify-center items-center flex-col md:flex-row about-bg mx-2 xl:mx-10 rounded-3xl" data-aos="fade-up">
+    
+    <div class="relative px-10 py-8 w-full lg:w-1/2 flex flex-col justify-center items-center max-md:px-5" data-aos="fade-right">
 
-               
-
-                <!-- Flowing balls following each wing line from left to right -->
-                <!-- Line 1 balls -->
-                <div class="flowing-ball ball-red flow-line-1 delay-0"></div>
-                <div class="flowing-ball ball-orange flow-line-1 delay-1"></div>
-                <div class="flowing-ball ball-green flow-line-1 delay-2"></div>
-                <div class="flowing-ball ball-blue flow-line-1 delay-3"></div>
-                <div class="flowing-ball ball-purple flow-line-1 delay-4"></div>
-                <div class="flowing-ball ball-cyan flow-line-1 delay-5"></div>
-
-                <!-- Line 2 balls -->
-                <div class="flowing-ball ball-orange flow-line-2 delay-0"></div>
-                <div class="flowing-ball ball-green flow-line-2 delay-1"></div>
-                <div class="flowing-ball ball-blue flow-line-2 delay-2"></div>
-                <div class="flowing-ball ball-purple flow-line-2 delay-3"></div>
-                <div class="flowing-ball ball-cyan flow-line-2 delay-4"></div>
-                <div class="flowing-ball ball-red flow-line-2 delay-5"></div>
-
-                <!-- Line 3 balls -->
-                <div class="flowing-ball ball-green flow-line-3 delay-0"></div>
-                <div class="flowing-ball ball-blue flow-line-3 delay-1"></div>
-                <div class="flowing-ball ball-purple flow-line-3 delay-2"></div>
-                <div class="flowing-ball ball-cyan flow-line-3 delay-3"></div>
-                <div class="flowing-ball ball-red flow-line-3 delay-4"></div>
-                <div class="flowing-ball ball-orange flow-line-3 delay-5"></div>
-
-                <!-- Line 4 balls -->
-                <div class="flowing-ball ball-blue flow-line-4 delay-0"></div>
-                <div class="flowing-ball ball-purple flow-line-4 delay-1"></div>
-                <div class="flowing-ball ball-cyan flow-line-4 delay-2"></div>
-                <div class="flowing-ball ball-red flow-line-4 delay-3"></div>
-                <div class="flowing-ball ball-orange flow-line-4 delay-4"></div>
-                <div class="flowing-ball ball-green flow-line-4 delay-5"></div>
-
-                <!-- Line 5 balls -->
-                <div class="flowing-ball ball-purple flow-line-5 delay-0"></div>
-                <div class="flowing-ball ball-cyan flow-line-5 delay-1"></div>
-                <div class="flowing-ball ball-red flow-line-5 delay-2"></div>
-                <div class="flowing-ball ball-orange flow-line-5 delay-3"></div>
-                <div class="flowing-ball ball-green flow-line-5 delay-4"></div>
-                <div class="flowing-ball ball-blue flow-line-5 delay-5"></div>
-
-                <!-- Center Button -->
-                <div class="absolute inset-0 flex justify-center items-center your-div">
-                    <button class="lets-talk-btn">
-                        Let's Talk
-                    </button>
-                </div>
-            </div>
+      <div class="py-20 rounded-3xl shadow-2xl shadow-gray-700 bg-white w-full xl:w-3/5 flex justify-center items-center" data-aos="zoom-in">
+        <div class="bg-white shadow-2xl shadow-gray-600 w-52 p-8 lg:p-12 rounded-full" data-aos="zoom-in">
+          <img src="img/moon.png" class="object-contain w-full h-full" alt="">
         </div>
+      </div>
+
+      <!-- Floating tags -->
+      <span class="absolute top-6 left-1/2 -translate-x-1/2 bg-white px-4 py-2 rounded-full shadow-md text-xxs lg:text-xs text-gray-800 flex items-center gap-2" data-aos="fade-up">
+        <img src="img/card_logo/text-star.png" class="h-3 md:h-4" alt=""> How are we tracking against the roadmap?
+      </span>
+
+      <span class="absolute top-[75px] md:top-20 lg:top-16 left-4 md:left-8 xl:left-20 border border-purple-100 text-blue-600 font-bold bg-white px-4 py-2 rounded-full text-xxs lg:text-xs flex items-center gap-2" data-aos="fade-right">
+        Write
+      </span>
+
+      <span class="absolute top-24 right-4 md:right-16 lg:right-24 xl:right-44 border border-purple-100 text-blue-600 font-bold bg-white px-4 py-2 rounded-full text-xxs lg:text-xs flex items-center gap-2" data-aos="fade-left">
+        Connect
+      </span>
+
+      <span class="absolute bottom-44 left-4 md:left-16 lg:left-24 xl:left-48 border border-purple-100 text-blue-600 font-bold bg-white px-4 py-2 rounded-full text-xxs lg:text-xs flex items-center gap-2" data-aos="fade-up">
+        Build
+      </span>
+
+      <span class="absolute bottom-28 left-1/2 -translate-x-1/2 bg-white px-4 py-2 rounded-full shadow-md text-xxs lg:text-xs text-gray-800 flex items-center gap-2" data-aos="fade-up">
+        <img src="img/card_logo/text-star.png" class="h-4" alt=""> What should i focus on next?
+      </span>
+
+      <span class="absolute top-44 left-1 md:left-4 xl:left-20 -translate-y-1/2 bg-white px-4 py-2 rounded-full shadow-md text-xxs lg:text-xs text-gray-800 flex items-center gap-2" data-aos="fade-left">
+        <img src="img/card_logo/text-star.png" class="h-4" alt=""> Turns my note in prd
+      </span>
+
+      <span class="absolute top-1/2 right-1 md:right-4 xl:right-20 -translate-y-1/2 bg-white px-4 py-2 rounded-full shadow-md text-xxs lg:text-xs text-gray-800 flex items-center gap-2" data-aos="fade-right">
+        <img src="img/card_logo/text-star.png" class="h-4" alt=""> Write release notes
+      </span>
+
+      <div class="flex justify-center items-center pt-7 gap-5 xl:gap-6 flex-wrap" data-aos="zoom-in">
+        <img src="img/google_icons/image.png" class="rounded-full p-2.5 h-8 lg:h-10 blur-puff hover:blur-none transition-all duration-500 bg-white" alt="">
+        <img src="img/google_icons/drive.png" class="rounded-full p-2.5 h-8 lg:h-10 blur-puff hover:blur-none transition-all duration-500 bg-white" alt="">
+        <img src="img/google_icons/image.png" class="rounded-full p-2.5 h-8 lg:h-10 blur-puff hover:blur-none transition-all duration-500 bg-white" alt="">
+        <img src="img/google_icons/figma.png" class="rounded-full p-2.5 h-8 lg:h-10 blur-puff hover:blur-none transition-all duration-500 bg-white" alt="">
+        <img src="img/google_icons/image.png" class="rounded-full p-2.5 h-8 lg:h-10 blur-puff hover:blur-none transition-all duration-500 bg-white" alt="">
+        <img src="img/google_icons/image.png" class="rounded-full p-2.5 h-8 lg:h-10 blur-puff hover:blur-none transition-all duration-500 bg-white" alt="">
+      </div>
+
     </div>
+
+    <div class="w-full lg:w-1/2 flex flex-col justify-center" data-aos="fade-left">
+
+      <div class="relative w-full px-8 md:px-12 lg:px-10 py-5 blur-puff hover:blur-none duration-500 transition-all" data-aos="fade-up">
+        <!-- Icon -->
+        <div class="absolute right-6 top-8 -translate-y-1/2 md:left-4 lg:-left-1 md:top-1/2 w-12 h-10 md:w-16 lg:w-16 md:h-16 flex items-center justify-center bg-blue-500 rounded-2xl text-white">
+          <img src="img/card_logo/bag.png" class="object-contain w-full h-full p-3 md:p-5" alt="">
+        </div>
+
+        <!-- Content box -->
+        <div class="lg:max-w-xl px-6 md:px-10 py-5 lg:py-6 lg:px-20 rounded-2xl shadow-2xl shadow-gray-700">
+          <h3 class="font-semibold text-sm lg:text-lg">Pros</h3>
+          <p class="lg:text-base text-gray-600 text-xs">
+            Instantly power up company-wide AI that connects every aspect of your work, across all your apps.
+          </p>
+          <div class="mt-3 flex gap-3">
+            <button class="px-2 lg:px-4 py-2 bg-blue-500 text-white rounded-3xl text-xxs lg:text-xs">
+              Try for Free
+            </button>
+            <button class="px-2 lg:px-4 py-2 border-2 border-gray-400 rounded-3xl text-xxs lg:text-xs">
+              Learn more
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative w-full px-8 md:px-12 lg:px-10 py-5 blur-puff hover:blur-none duration-500 transition-all" data-aos="fade-up">
+        <!-- Icon -->
+        <div class="absolute right-6 top-8 -translate-y-1/2 md:left-4 lg:-left-1 md:top-1/2 w-12 h-10 md:w-16 lg:w-20 md:h-16 flex items-center justify-center bg-blue-500 rounded-lg text-white">
+          <img src="img/card_logo/star.png" class="object-contain w-full h-full p-3 md:p-5" alt="">
+        </div>
+
+        <!-- Content box -->
+        <div class="lg:max-w-xl px-6 md:px-10 py-5 lg:py-6 lg:px-20 rounded-2xl shadow-2xl shadow-gray-700">
+          <h3 class="font-semibold text-sm lg:text-lg">Pros</h3>
+          <p class="lg:text-base text-gray-600 text-xs">
+            Instantly power up company-wide AI that connects every aspect of your work, across all your apps.
+          </p>
+          <div class="mt-3 flex gap-3">
+            <button class="px-2 lg:px-4 py-2 bg-blue-500 text-white rounded-3xl text-xxs lg:text-xs">
+              Try for Free
+            </button>
+            <button class="px-2 lg:px-4 py-2 border-2 border-gray-400 rounded-3xl text-xxs lg:text-xs">
+              Learn more
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
 </body>
 </html>
