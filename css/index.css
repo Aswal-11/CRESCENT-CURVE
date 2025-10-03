@@ -40,7 +40,7 @@ body::-webkit-scrollbar {
    font-size: 2px;
 }
 .border-4xl{
-  border-radius: 40px 40px;
+  border-radius: 30px 35px;
 }
 .custom-shadow{
   box-shadow: 20px 20px 24px #d6daeb ;
@@ -92,17 +92,17 @@ body::-webkit-scrollbar {
 /*hero card button */
 @media (min-width: 308px) and (max-width: 330px) {
   .your-div {
-    padding-top: 30px; 
+    padding-top: 34px; 
   }
 }
 @media (min-width: 331px) and (max-width: 378px) {
   .your-div {
-    padding-top: 36px; /* For > 400px */
+    padding-top: 41px; /* For > 400px */
   }
 }
 @media (min-width: 378px) and (max-width: 500px) {
   .your-div {
-    padding-top: 44px; 
+    padding-top: 48px; 
   }
 }
 
@@ -114,28 +114,11 @@ body::-webkit-scrollbar {
 
 @media (min-width: 1000px) and (max-width: 1440px) {
   .your-div {
-    padding-top: 101px; 
+    padding-top: 119px; 
   }
 }
 @media (min-width: 1440px) {
   .your-div {
-    padding-top: 138px; 
+    padding-top: 150px; 
   }
-}
-
-/* ball */
-.ball{
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: red;
-  position: relative;
-  /* animation: mymove 5s infinite; */
-  z-index: 30;
-}
-
-@keyframes mymove {
-  0%   { left: 0px; opacity: 1; }     /* Start full visible */
-  /* 80%  { left: 440px; opacity: 1; }   Reach end but still visible */
-  100% { left: 100%; opacity: 0.3; }   /* Fade out at end */
 }
