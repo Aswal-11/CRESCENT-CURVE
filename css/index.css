@@ -97,7 +97,7 @@ body::-webkit-scrollbar {
 }
 @media (min-width: 331px) and (max-width: 378px) {
   .your-div {
-    padding-top: 41px; /* For > 400px */
+    padding-top: 38px; /* For > 400px */
   }
 }
 @media (min-width: 378px) and (max-width: 500px) {
