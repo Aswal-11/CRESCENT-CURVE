@@ -28,6 +28,8 @@ body::-webkit-scrollbar {
 #mobile-menu {
   transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+/* Custom */
 .blur-puff{
   filter: blur(1.2px);
 }
@@ -37,6 +39,14 @@ body::-webkit-scrollbar {
 .text-xsl{
    font-size: 2px;
 }
+.border-4xl{
+  border-radius: 40px 40px;
+}
+.custom-shadow{
+  box-shadow: 20px 20px 24px #d6daeb ;
+}
+/*  */
+
 .about-bg {
   background-color: #EBF0FF;
 }
@@ -62,13 +72,9 @@ body::-webkit-scrollbar {
   width: 100%;
 }
 
-.border-4xl{
-  border-radius: 40px 40px;
-}
-
 /* Hero cards */
 .bg-div {
-  background-image: url("../img/home_page_img.png");
+  background-image: url("../img/home_page_img.webp");
   background-size: cover; /* makes it fit */
   background-position: center; /* centers the image */
   border-radius: 40px 40px;
@@ -76,7 +82,7 @@ body::-webkit-scrollbar {
 }
 
 .bg-dot-div {
-  background-image: url("../img/dots_img.png");
+  background-image: url("../img/dots_img.webp");
   background-size: cover; /* makes it fit */
   background-position: center; /* centers the image */
   border-radius: 40px 40px;
