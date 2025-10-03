@@ -102,7 +102,7 @@ body::-webkit-scrollbar {
 }
 @media (min-width: 378px) and (max-width: 500px) {
   .your-div {
-    padding-top: 43px; 
+    padding-top: 41px; 
   }
 }
 
